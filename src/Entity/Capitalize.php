@@ -5,9 +5,15 @@ namespace App\Entity;
 class Capitalize implements Transform
 
 {
-    public function transform(string $string): string
+    public function transform(String $string): String
     {
-         preg_replace('/(\w)(.)?/e', "strtoupper('$1').strtolower('$2')", 'test example');
-         return $string;
+        $capString = strtolower($string);
+
+        for ($i = 0, $len = strlen($capString); $i < $len; $i += 2)
+        {
+            $capString[$i] = strtoupper($capString[$i]);
+        }
+
+        return $capString;
     }
 }
